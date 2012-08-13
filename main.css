@@ -2,3 +2,16 @@ body {
 	padding-top: 60px;
 	padding-bottom: 40px;
 }
+
+.bigrectangle {
+	line-height: 1.2 !important; /* fixes an issue where text is aligned at top */
+	font-size: 90px !important;
+	height: auto !important;
+	width: 100% !important;
+}
+
+.bigrectangle:focus {
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 30px rgba(82,168,236,.8) !important;
+	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 30px rgba(82,168,236,.8) !important;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 30px rgba(82,168,236,.8) !important;
+	/* previously, the boxshadow was 8px, now it's bigger for large boxes */

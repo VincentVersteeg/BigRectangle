@@ -8,6 +8,10 @@ body {
 	font-size: 90px !important;
 	height: auto !important;
 	width: 100% !important;
+	box-sizing: border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
 }
 
 .bigrectangle:focus {

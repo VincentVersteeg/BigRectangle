@@ -1,7 +1,7 @@
 Mousetrap.bind('enter', function() { alert(parseString(document.getElementById('bigrectangle').value)) });
 
 function parseString(pstring) {
-	Mixpanel.track("parsestring", {"screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "screenheight": $(window).height(), "screenwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
+	Mixpanel.track("parsestring", {"screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
 	pstring.replace('days from now', '+d');
 	pstring.replace('now', 'today');
 	var date = Date.parse(pstring);
@@ -127,7 +127,7 @@ var BrowserDetect = {
 BrowserDetect.init();
 
 $(document).ready(function() {
-	mixpanel.track("PageLoad", {"screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "screenheight": $(window).height(), "screenwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
+	mixpanel.track("PageLoad", {"screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
     $("#bigrectangle").keyup(function(event){
 		if(event.keyCode == 13) {
 			alert(parseString(document.getElementById('bigrectangle').value));

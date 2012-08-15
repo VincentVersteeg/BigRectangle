@@ -8,6 +8,25 @@ function parseString(pstring) {
 	return date;
 }
 
+// You can extend the parser by adding a new parsing function to the `XDate.parsers` array.
+// This function is given a single string argument and should return an XDate if parsing was successful.
+
+function parseMDY(str) {
+	// this example parses dates like "month/date/year"
+	var parts = str.split('/');
+	if (parts.length == 3) {
+		return new XDate(
+			parseInt(parts[2]), // year
+			parseInt(parts[0] ? parts[0]-1 : 0), // month
+			parseInt(parts[1]) // date
+		);
+	}
+}
+
+XDate.parsers.push(parseMDY);
+
+var d = new XDate("6/8/1986");
+
 var BrowserDetect = {
 	init: function () {
 		this.browser = this.searchString(this.dataBrowser) || "An unknown browser";

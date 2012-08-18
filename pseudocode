@@ -1,0 +1,29 @@
+Pseudocode for BigRectangle
+===========================
+
+make textbox
+assign event handler
+
+on enter key press {
+	var result;
+	result = parseText(value entered in textbox, personality file);
+	if result == null text = parseText(text, standardization file);
+	
+	return result
+}
+
+function parseText(text, filetoparsefrom) {
+	//create an array from the file - arrays are easier to work with than strings
+	var filetext = getFile(filetoparsefrom);
+	if filetext.indexOf(text) == -1 {
+		return null
+	}
+	else {
+		var farray = [];
+		for (var f=0, f=<filetext.lines, f++) {
+			if farray[f] == text return farray
+		}
+		if filetext.indexOf(newline+newline+text)
+		return parsedText
+	}
+}

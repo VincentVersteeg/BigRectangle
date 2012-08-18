@@ -4,7 +4,13 @@ function parseString(pstring) {
 	mixpanel.track("parsestring", {"screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
 	pstring.replace('days from now', '+d');
 	pstring.replace('now', 'today');
-	var date = Date.parse(pstring);
+	var date = strtotime(pstring);
+	if (date === false) { 
+	date = Date.parse(pstring);
+	}
+	else {
+	date = moment.unix(date);
+	}
 	return date;
 }
 

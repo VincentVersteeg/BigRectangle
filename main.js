@@ -14,7 +14,7 @@ function parseString(pstring) {
 function checkLaunch() { 
 	if (status != "go") {
 		//no go, delay launch
-		checkLaunch();
+		setTimeout(checkLaunch(),100);
 	}
 	else {
 		//go for launch

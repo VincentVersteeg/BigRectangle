@@ -11,7 +11,7 @@ function parseString(pstring) {
 	return result;
 }
 
-function dalayLaunch() { 
+function delayLaunch() { 
 	if (status != "go") {
 		//no go, delay launch
 		checkLaunch();

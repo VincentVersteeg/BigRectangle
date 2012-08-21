@@ -5,24 +5,14 @@ function parseString(pstring) {
 	state = "personality";
 	readFile("http://owenversteeg.github.com/BigRectangle/personality.txt");
 	
+
 	while (status != "go") {
-		setTimeout(checkLaunch(),100);
+	x++;
 	}
 	return result;
 }
 
-function checkLaunch() { 
-	if (status != "go") {
-		//no go, delay launch
-		setTimeout(checkLaunch(),100);
-	}
-	else {
-		//go for launch
-		status = "go";
-	}
-}
-
-var state, result, waitTime;
+var x, state, result, waitTime;
 var txtFile = new XMLHttpRequest();
 
 function readFile(url) {

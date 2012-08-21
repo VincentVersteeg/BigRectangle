@@ -2,22 +2,19 @@ Mousetrap.bind('enter', function() { alert(parseString(document.getElementById('
 
 function parseString(pstring) {
 	mixpanel.track("parsestring", {"screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
-	pstring.replace('days from now', '+d');
-	pstring.replace('now', 'today');
-	var date = strtotime(pstring);
-	if (date === false) { 
-	date = Date.parse(pstring);
+	var lines = readFile("http://owenversteeg.github.com/BigRectangle/personality.txt");
+	var result;
+	for(var i=0; i<lines.length; i++) {
+		if (lines[i].toString.indexOf('g= ') != -1 && lines[i+1].toString.indexOf('r= ') != -1) {
+			result = lines[i+1].substr(3);
+		}
 	}
-	else {
-	date = moment.unix(date);
-	}
-	return date;
+	return result;
 }
 
-var lines;
-
-function readFile(url) { //"http://stereotypicalapps.github.com/responses.txt"
+function readFile(url) {
 	var txtFile = new XMLHttpRequest();
+	var lines;
 	txtFile.open("GET", url, true);
 	txtFile.onreadystatechange = function() {
 		if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.
@@ -27,6 +24,7 @@ function readFile(url) { //"http://stereotypicalapps.github.com/responses.txt"
 			}
 		}
 	}
+	return lines;
 }
 
 // You can extend the parser by adding a new parsing function to the `XDate.parsers` array.

@@ -1,0 +1,5 @@
+g= Hello world
+r= Hello to you!
+
+g= What is your name?
+r= My name is BigRectangle.

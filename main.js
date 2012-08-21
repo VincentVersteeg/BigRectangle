@@ -2,7 +2,7 @@ Mousetrap.bind('enter', function() { alert(parseString(document.getElementById('
 
 function parseString(pstring) {
 	mixpanel.track("parsestring", {"screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
-	var lines = readFile("http://owenversteeg.github.com/BigRectangle/personality.txt");
+	lines = readFile("http://owenversteeg.github.com/BigRectangle/personality.txt");
 	var result;
 	for(var i=0; i<lines.length; i++) {
 		if (lines[i].toString.indexOf('g= ') != -1 && lines[i+1].toString.indexOf('r= ') != -1) {
@@ -12,9 +12,10 @@ function parseString(pstring) {
 	return result;
 }
 
+var lines;
+
 function readFile(url) {
 	var txtFile = new XMLHttpRequest();
-	var lines;
 	txtFile.open("GET", url, true);
 	txtFile.onreadystatechange = function() {
 		if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.

@@ -13,9 +13,9 @@ function parseString(pstring) {
 }
 
 var lines;
+var txtFile = new XMLHttpRequest();
 
 function readFile(url) {
-	var txtFile = new XMLHttpRequest();
 	txtFile.open("GET", url, true);
 	txtFile.onreadystatechange = function() {
 		if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.

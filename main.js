@@ -6,12 +6,12 @@ function parseString(pstring) {
 	readFile("http://owenversteeg.github.com/BigRectangle/personality.txt");
 	
 	while (status != "go") {
-		setTimeout(delayLaunch(),100);
+		setTimeout(checkLaunch(),100);
 	}
 	return result;
 }
 
-function delayLaunch() { 
+function checkLaunch() { 
 	if (status != "go") {
 		//no go, delay launch
 		checkLaunch();

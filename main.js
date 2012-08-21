@@ -14,6 +14,21 @@ function parseString(pstring) {
 	return date;
 }
 
+var lines;
+
+function readFile(url) { //"http://stereotypicalapps.github.com/responses.txt"
+	var txtFile = new XMLHttpRequest();
+	txtFile.open("GET", url, true);
+	txtFile.onreadystatechange = function() {
+		if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.
+			if (txtFile.status === 200) {  // Makes sure it's found the file.
+				//allText = txtFile.responseText; all the response text
+				lines = txtFile.responseText.split("\n"); // Will separate each line into an array
+			}
+		}
+	}
+}
+
 // You can extend the parser by adding a new parsing function to the `XDate.parsers` array.
 // This function is given a single string argument and should return an XDate if parsing was successful.
 

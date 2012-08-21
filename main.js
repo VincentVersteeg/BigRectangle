@@ -43,7 +43,7 @@ function readFile(url) {
 function personalityParse(lines) {
 	var rslt;
 	for(var i=0; i<lines.length; i++) {
-		if (lines[i].toString.indexOf('g= ') != -1 && lines[i+1].toString.indexOf('r= ') != -1) {
+		if (lines[i].toString.indexOf('g= ') != -1 && lines[i+1].toString().indexOf('r= ') != -1) {
 			rslt = lines[i+1].substr(3);
 		}
 	}

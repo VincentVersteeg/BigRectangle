@@ -24,6 +24,7 @@ function readFile(url) {
 			}
 		}
 	}
+	txtFile.send(null);
 	return lines;
 }
 

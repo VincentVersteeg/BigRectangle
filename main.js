@@ -8,7 +8,7 @@ function parseString(pstring) {
 
 var currentPString;
 
-var x, result, xstatus, waitTime, tlines;
+var x, result, xstatus, waitTime, plines;
 var txtFile = new XMLHttpRequest();
 
 function readFile(url, state) {
@@ -20,9 +20,12 @@ function readFile(url, state) {
 				var lines = txtFile.responseText.split("\n"); // Will put each line as part of an array
 				
 				for (var i=0; i<lines.length; i++) {
-				lines = lines[i].substring(0, lines[i].length-1);
+					lines[i] = lines[i].substring(0, lines[i].length-1);
 				}
+				//ALWAYS end personality file w/newline
+				
 				if (txtFile['state'] === "personality") {
+					pLines = lines;
 					result = personalityParse(lines);
 					if (result == null && xstatus != "secondcheck") {
 						//The personality file had nothing to say on the subject, AND the standardization file didn't already work its' magic - go to the standardization file

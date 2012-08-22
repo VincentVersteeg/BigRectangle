@@ -36,7 +36,7 @@ function readFile(url, state) {
 						//readFile("http://owenversteeg.github.com/BigRectangle/data.txt", "data");
 						alert('this program is not finished');
 					}
-					else {
+					else if (result != null || undefined) {
 						//all good
 						alert(result);
 					}
@@ -97,9 +97,7 @@ function personalityParse(lines) {
 	var rslt = null; //result
 	for (var i=0; i<lines.length; i++) { //for each item in the array, execute this
 		//if (lines[i].toString().indexOf('g= ') != -1 && lines[i+1].toString().indexOf('r= ') != -1) {
-			console.log(lines[i].toString().toLowerCase() + '|' + 'g= ' + currentPString.toLowerCase() + '\n' + '|');
 			if (lines[i].toString().toLowerCase() == 'g= ' + currentPString.toLowerCase().toString()) {
-				alert('good');
 				rslt = lines[i+1].substr(3); //the result equals the returned value 
 			}
 		//}
@@ -248,7 +246,7 @@ $(document).ready(function() {
 	mixpanel.track("PageLoad", {"screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
     $("#bigrectangle").keyup(function(event){
 		if(event.keyCode == 13) {
-			alert(parseString(document.getElementById('bigrectangle').value));
+			//alert(parseString(document.getElementById('bigrectangle').value));
 		}
 	});
 });

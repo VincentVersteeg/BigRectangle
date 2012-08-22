@@ -8,7 +8,7 @@ function parseString(pstring) {
 
 var currentPString;
 
-var x, result, xstatus, waitTime;
+var x, result, xstatus, waitTime, tlines;
 var txtFile = new XMLHttpRequest();
 
 function readFile(url, state) {
@@ -18,6 +18,10 @@ function readFile(url, state) {
 		if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.
 			if (txtFile.status === 200) {  // Makes sure it's found the file.
 				var lines = txtFile.responseText.split("\n"); // Will put each line as part of an array
+				
+				for (var i=0; i<lines.length; i++) {
+				lines = lines[i].substring(0, lines[i].length-1);
+				}
 				if (txtFile['state'] === "personality") {
 					result = personalityParse(lines);
 					if (result == null && xstatus != "secondcheck") {
@@ -87,19 +91,15 @@ function standardizationParse(lines) {
 
 function personalityParse(lines) {
 	//This code is golden
-	var rslt; //result
+	var rslt = null; //result
 	for (var i=0; i<lines.length; i++) { //for each item in the array, execute this
-		if (lines[i].toString().indexOf('g= ') != -1 && lines[i+1].toString().indexOf('r= ') != -1) {
-			if(lines[i].toLowerCase() == 'g= ' + currentPString.toLowerCase()) { rslt = lines[i+1].substr(3); //the result equals the returned value 
-			} 
-			else {
-			rslt = null;
+		//if (lines[i].toString().indexOf('g= ') != -1 && lines[i+1].toString().indexOf('r= ') != -1) {
+			console.log(lines[i].toString().toLowerCase() + '|' + 'g= ' + currentPString.toLowerCase() + '\n' + '|');
+			if (lines[i].toString().toLowerCase() == 'g= ' + currentPString.toLowerCase().toString()) {
+				alert('good');
+				rslt = lines[i+1].substr(3); //the result equals the returned value 
 			}
-		}
-		else {
-			rslt = null;
-		}
-		i++;
+		//}
 	}
 	return rslt;
 }

@@ -19,6 +19,8 @@ function readFile(url, state) {
 			if (txtFile.status === 200) {  // Makes sure it's found the file.
 				var lines = txtFile.responseText.split("\n"); // Will put each line as part of an array
 				
+				plines = lines;
+				
 				for (var i=0; i<lines.length; i++) {
 					lines[i] = lines[i].substring(0, lines[i].length-1);
 				}
@@ -36,10 +38,11 @@ function readFile(url, state) {
 						//readFile("http://owenversteeg.github.com/BigRectangle/data.txt", "data");
 						alert('this program is not finished');
 					}
-					else if (result != null || undefined) {
+					else if (result != null || result != undefined) {
 						//all good
 						alert(result);
 					}
+					console.log(result);
 				}
 				
 				if (txtFile['state'] === "standardization") {
@@ -59,6 +62,7 @@ var input = [];
 var output = [];
 
 function standardizationParse(lines) {
+	console.log('Lines: '+lines);
 	//this code is golden
 	/*TODO:
 	parse written numbers
@@ -93,6 +97,7 @@ function standardizationParse(lines) {
 }
 
 function personalityParse(lines) {
+	console.log('Lines: '+lines);
 	//This code is golden
 	var rslt = null; //result
 	for (var i=0; i<lines.length; i++) { //for each item in the array, execute this

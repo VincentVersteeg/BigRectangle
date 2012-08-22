@@ -24,6 +24,15 @@ function readFile(url, state) {
 						//The personality file had nothing to say on the subject, AND the standardization file didn't already work its' magic - go to the standardization file
 						readFile("http://owenversteeg.github.com/BigRectangle/standardization.txt", "standardization");
 					}
+					else if (result == null && xstatus == "secondcheck") {
+						//The personality file had nothing to say on the subject, AND the standardization file already went - go to the data file
+						//readFile("http://owenversteeg.github.com/BigRectangle/data.txt", "data");
+						alert('this program is not finished');
+					}
+					else {
+						//all good
+						alert(result);
+					}
 				}
 				
 				if (txtFile['state'] === "standardization") {

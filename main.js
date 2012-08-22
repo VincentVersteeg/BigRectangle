@@ -1,41 +1,96 @@
-Mousetrap.bind('enter', function() { alert(parseString(document.getElementById('bigrectangle').value)) });
+Mousetrap.bind('enter', function() { parseString(document.getElementById('bigrectangle').value); });
 
 function parseString(pstring) {
 	mixpanel.track("parsestring", {"screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
-	state = "personality";
-	readFile("http://owenversteeg.github.com/BigRectangle/personality.txt");
-	
-
-	while (status != "go") {
-	x++;
-	}
-	return result;
+	currentPString = pstring;
+	readFile("http://owenversteeg.github.com/BigRectangle/personality.txt", "personality");
 }
 
-var x, state, result, waitTime;
+var currentPString;
+
+var x, result, xstatus, waitTime;
 var txtFile = new XMLHttpRequest();
 
-function readFile(url) {
+function readFile(url, state) {
+	txtFile['state'] = state;
 	txtFile.open("GET", url, true);
 	txtFile.onreadystatechange = function() {
 		if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.
 			if (txtFile.status === 200) {  // Makes sure it's found the file.
-				//allText = txtFile.responseText; all the response text
-				var lines = txtFile.responseText.split("\n"); // Will separate each line into an array
-				if (state === "personality") result = personalityParse(lines);
-				status = "go";
+				var lines = txtFile.responseText.split("\n"); // Will put each line as part of an array
+				if (txtFile['state'] === "personality") {
+					result = personalityParse(lines);
+					if (result == null && xstatus != "secondcheck") {
+						//The personality file had nothing to say on the subject, AND the standardization file didn't already work its' magic - go to the standardization file
+						readFile("http://owenversteeg.github.com/BigRectangle/standardization.txt", "standardization");
+					}
+				}
+				
+				if (txtFile['state'] === "standardization") {
+					result = standardizationParse(lines); //parses the standardization file
+					//now check if the personality file likes the result
+					xstatus = "secondcheck";
+					readFile("http://owenversteeg.github.com/BigRectangle/personality.txt", "personality");
+				}
 			}
 		}
 	}
 	txtFile.send(null);
 }
 
-function personalityParse(lines) {
-	var rslt;
-	for(var i=0; i<lines.length; i++) {
-		if (lines[i].toString().indexOf('g= ') != -1 && lines[i+1].toString().indexOf('r= ') != -1) {
-			rslt = lines[i+1].substr(3);
+var i;
+var input = [];
+var output = [];
+
+function standardizationParse(lines) {
+	//this code is golden
+	/*TODO:
+	parse written numbers
+	write standardization file
+	*/
+	input = [];
+	output = [];
+	i = 0; //number of lines into the array
+	$.each(lines, function() {  // going through the array of lines
+		if (i != 0) { //if this is not the first line
+			if (lines[i-1].length == 0) input.push(lines[i]); //was the previous line blank? if so, this is added to the input array.
+			if (i != 1) { //if this is not the second line
+				if (lines[i-2].length == 0) output.push(lines[i]); //if prev prev was blank, this is output
+			}
+			else {
+				output.push(lines[i]);
+			}
 		}
+		else { //else, if this is the first line, we know it's input
+			input.push(lines[i]);
+		}
+		i++; //go to next line
+	});
+	
+	var reezlt = null;
+	
+	for (var i=0; i<input.length; i++) {
+		if (input[i] == currentPString) reezlt = output[i]; //rewrite so that the entire phrase need not be matched
+	}
+
+	return reezlt;
+}
+
+function personalityParse(lines) {
+	//This code is golden
+	var rslt; //result
+	for (var i=0; i<lines.length; i++) { //for each item in the array, execute this
+		if (lines[i].toString().indexOf('g= ') != -1 && lines[i+1].toString().indexOf('r= ') != -1) {
+			if(lines[i].toLowerCase() == 'g= ' + currentPString.toLowerCase()) { rslt = lines[i+1].substr(3); //the result equals the returned value 
+			} 
+			else {
+			rslt = null;
+			}
+		}
+		else {
+			rslt = null;
+		}
+		i++;
 	}
 	return rslt;
 }

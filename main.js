@@ -29,6 +29,7 @@ function readFile(url, state) {
 				if (txtFile['state'] === "personality") {
 					pLines = lines;
 					result = personalityParse(lines);
+					console.log(result);
 					if (result == null && xstatus != "secondcheck") {
 						//The personality file had nothing to say on the subject, AND the standardization file didn't already work its' magic - go to the standardization file
 						readFile("http://owenversteeg.github.com/BigRectangle/standardization.txt", "standardization");
@@ -42,7 +43,6 @@ function readFile(url, state) {
 						//all good
 						alert(result);
 					}
-					console.log(result);
 				}
 				
 				if (txtFile['state'] === "standardization") {

@@ -251,7 +251,7 @@ $(document).ready(function() {
 	mixpanel.track("PageLoad", {"screenheight":screen.height, "screenwidth":screen.width, "useragent": navigator.userAgent, "windowheight": $(window).height(), "windowwidth": $(window).width(), "browser": BrowserDetect.browser, "browsernum": BrowserDetect.version, "os": BrowserDetect.OS});
     $("#bigrectangle").keyup(function(event){
 		if(event.keyCode == 13) {
-			//alert(parseString(document.getElementById('bigrectangle').value));
+			parseString(document.getElementById('bigrectangle').value);
 		}
 	});
 });

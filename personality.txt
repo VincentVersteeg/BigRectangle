@@ -1,5 +1,8 @@
 g= Hello world
-r= Hello to you!
+r= No, that's *my* line!
 
 g= What is your name?
 r= My name is BigRectangle.
+
+g= ...
+r= Nice try, wise guy.

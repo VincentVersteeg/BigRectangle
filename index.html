@@ -7,12 +7,12 @@
 		<meta name="description" content="Free, Open-Source, Keyboard-Controlled Tools" />
 		<meta name="author" content="Owen Versteeg" />
 		<!-- Le styles -->
-		<link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet" />
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.0/css/bootstrap.no-icons.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="font-awesome.css" />
 		<link href="main.css" rel="stylesheet" />
 		<script src="assets/other/operamini.js"></script>
 		<link href="assets/other/mobile.css" rel="stylesheet" />
 		<link href="assets/other/main.css" rel="stylesheet" />
-		<link href="assets/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
 		<script src="assets/js/moment.min.js"></script>
@@ -23,6 +23,7 @@
 		<script src="assets/js/number_to_string.js"></script>
 		<script src="assets/js/text2num.js"></script>
 		<script src="main.js"></script>
+		
 		<!--[if lte IE 6]>
 		<script src="assets/other/ie6.js"></script>
 		<link href="assets/other/ie6.css" rel="stylesheet" />
@@ -57,7 +58,7 @@
 		</script>
 	</head>
 	<body>
-		<div class="navbar navbar-fixed-top">
+		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
 					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -100,7 +101,10 @@
 			<p><a class="btn btn-info btn-large">Pointless button &raquo;</a> <a class="btn btn-primary btn-large">Even pointlesser button &raquo;</a> <a class="btn btn-success btn-large">The most pointless button &raquo;</a></p>
 		</div>
 		<!-- Type in the box below -->
-		<input type="text" name="bigrectangle" id="bigrectangle" class="bigrectangle" placeholder="Just type..." >
+		<div class="input-append">
+		<input type="text" name="bigrectangle" id="bigrectangle" class="bigrectangle" placeholder="Just type...">
+		<button id="endbtn" class="btn btn-inverse" type="button" onclick="parseString(document.getElementById('bigrectangle').value);"><i class="icon-search"></i></button>
+		</div>
 			<hr />
 			<footer>
 				<p>&copy; Owen Versteeg 2012. </p>

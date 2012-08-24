@@ -110,6 +110,38 @@ function personalityParse(lines) {
 	return rslt;
 }
 
+function resizeTo() {
+	var bigRect = document.getElementById('bigrectangle');
+	var searchBtn = document.getElementById('endbtn');
+	var searchIcon = document.getElementById('sicon');
+	if (document.body.offsetWidth > 1000) {
+		//enough space to have big fonts
+		bigRect.setAttribute('style', 'font-size:90px !important');
+		searchBtn.setAttribute('style', 'font-size:90px !important');
+		searchBtn.setAttribute('style', 'height:118px !important');
+		searchBtn.setAttribute('style', 'width:118px !important');
+	}
+	else if (document.body.offsetWidth > 400 && document.body.offsetWidth < 1000) {
+		bigRect.style.cssText = bigRect.style.cssText + 'font-size:50px !important; width:'+($('#container').width()-99)+'px !important;';
+		searchBtn.style.cssText = searchBtn.style.cssText + 'font-size:51px !important; line-height:53px !important; width:70px !important; height:70px !important;';
+		searchIcon.style.cssText = "margin-left: 0px !important;";
+	}
+	else {
+		bigRect.style.cssText = bigRect.style.cssText + 'font-size:25px !important; width:'+($('#container').width()-68)+'px !important;';
+		searchBtn.style.cssText = searchBtn.style.cssText + 'font-size:25px !important; line-height:26px !important; width:40px !important; height:40px !important;';
+		searchIcon.style.cssText = "margin-left: -4px !important;";
+	}
+}
+
+$(document).ready(function() {
+	resizeTo();
+});
+
+//resize the textbox on window resize
+$(window).resize(function() {
+  resizeTo();
+});
+
 // You can extend the parser by adding a new parsing function to the `XDate.parsers` array.
 // This function is given a single string argument and should return an XDate if parsing was successful.
 

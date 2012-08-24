@@ -116,18 +116,17 @@ function resizeTo() {
 	var searchIcon = document.getElementById('sicon');
 	if (document.body.offsetWidth > 1000) {
 		//enough space to have big fonts
-		bigRect.setAttribute('style', 'font-size:90px !important');
-		searchBtn.setAttribute('style', 'font-size:90px !important');
-		searchBtn.setAttribute('style', 'height:118px !important');
-		searchBtn.setAttribute('style', 'width:118px !important');
+		bigRect.style.cssText = bigRect.style.cssText + 'font-size:90px !important; width:'+($('#hero-unit').width()+4)+'px !important;';
+		searchBtn.style.cssText = searchBtn.style.cssText + 'font-size:91px !important; line-height:93px !important; width:118px !important; height:118px !important;';
+		searchIcon.style.cssText = "margin-left: 0px !important;";
 	}
 	else if (document.body.offsetWidth > 400 && document.body.offsetWidth < 1000) {
-		bigRect.style.cssText = bigRect.style.cssText + 'font-size:50px !important; width:'+($('#container').width()-99)+'px !important;';
+		bigRect.style.cssText = bigRect.style.cssText + 'font-size:50px !important; width:'+($('#hero-unit').width()+50)+'px !important;';
 		searchBtn.style.cssText = searchBtn.style.cssText + 'font-size:51px !important; line-height:53px !important; width:70px !important; height:70px !important;';
 		searchIcon.style.cssText = "margin-left: 0px !important;";
 	}
 	else {
-		bigRect.style.cssText = bigRect.style.cssText + 'font-size:25px !important; width:'+($('#container').width()-68)+'px !important;';
+		bigRect.style.cssText = bigRect.style.cssText + 'font-size:25px !important; width:'+($('#hero-unit').width()+81)+'px !important;';
 		searchBtn.style.cssText = searchBtn.style.cssText + 'font-size:25px !important; line-height:26px !important; width:40px !important; height:40px !important;';
 		searchIcon.style.cssText = "margin-left: -4px !important;";
 	}
